@@ -1,19 +1,39 @@
 # easyd
-simple webhook deploy
+A simple TUI-based deployer for personal usage built with Bubbletea.
 
-## Getting start
+## Features
+
+- **SSH Management**: Add, edit, delete, and test SSH server configurations
+- **Project Management**: Create projects with build instructions and deploy scripts
+- **Deployment**: Deploy projects to multiple servers with real-time logging
+
+## Getting Started
+
 ```bash
-easyd [token]
-```
-After run this command,it would serving with port 8082.
-```bash
-curl your_ip|domain:8082/deploy?script=hello&token=[your token]
-```
-It will run `hello.sh` on the `scripts` dir.
+# Build the application
+go build
 
-Or, you can upload `.zip` file with:
-```shell script
-curl  -F "filename=@/home/test/file.tar.gz" http://127.0.0.1:8082/deploy\?script\=hello\&token\=
+# Run the application
+./ed
 ```
 
+## Usage
 
+1. **SSH Management**:
+   - Add SSH configurations for your servers
+   - Test connections before deployment
+   - Support for password, key, and SSH agent authentication
+
+2. **Project Management**:
+   - Create projects with build instructions and deploy scripts
+   - Assign multiple deploy servers to each project
+   - Edit and manage project configurations
+
+3. **Deployment**:
+   - Select a project and deploy to all configured servers
+   - View real-time deployment logs
+   - Automatic execution of build and deploy commands
+
+## Configuration
+
+All data is stored in `config.json` in the current directory. The application will create this file automatically on first run.

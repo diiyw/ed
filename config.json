@@ -1,0 +1,13 @@
+{
+  "ssh_configs": [
+    {
+      "name": "local",
+      "host": "127.0.0.1",
+      "port": 22,
+      "user": "paoyou",
+      "auth_type": "password",
+      "password": "284655"
+    }
+  ],
+  "projects": []
+}
