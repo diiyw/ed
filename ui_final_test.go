@@ -444,7 +444,7 @@ func TestViewConsistencyAfterUpdates(t *testing.T) {
 	// View should be consistent when returning to same position
 	// Note: Due to styling and ANSI codes, we check that both views contain the same menu items
 	// rather than exact string equality
-	if !strings.Contains(view3, "SSH Management") || !strings.Contains(view3, "Project Management") {
+	if !strings.Contains(view3, "Servers") || !strings.Contains(view3, "Project Management") {
 		t.Error("View should contain menu items when returning to same cursor position")
 	}
 }
@@ -472,7 +472,7 @@ func TestAllViewsContainRequiredElements(t *testing.T) {
 			requiredElements: []string{
 				"EASY DEPLOY",
 				"Main Menu",
-				"SSH Management",
+				"Servers",
 				"Project Management",
 				"Exit",
 				"Navigate",

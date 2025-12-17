@@ -656,7 +656,7 @@ func TestProperty_SelectedItemHighlighting(t *testing.T) {
 
 	properties.Property("selected items have distinct styling from unselected items", prop.ForAll(
 		func(selectedIndex int) bool {
-			// Main menu has 3 items (SSH Management, Project Management, Exit)
+			// Main menu has 3 items (Servers, Project Management, Exit)
 			numItems := 3
 
 			// Ensure selected index is within bounds
@@ -690,7 +690,7 @@ func TestProperty_SelectedItemHighlighting(t *testing.T) {
 			hasArrowIndicator := strings.Contains(view, "→")
 
 			// The view should contain menu items
-			hasMenuItems := strings.Contains(view, "SSH Management") ||
+			hasMenuItems := strings.Contains(view, "Servers") ||
 				strings.Contains(view, "Project Management") ||
 				strings.Contains(view, "Exit")
 
@@ -716,7 +716,7 @@ func TestSelectedItemStyling(t *testing.T) {
 	}
 
 	// Main menu has 3 items
-	menuItems := []string{"SSH Management", "Project Management", "Exit"}
+	menuItems := []string{"Servers", "Project Management", "Exit"}
 
 	// Test with different selected indices
 	for selectedIndex := 0; selectedIndex < len(menuItems); selectedIndex++ {
@@ -4189,7 +4189,7 @@ func TestContextualHelpPositioning(t *testing.T) {
 		{
 			name:                 "Main Menu help after content",
 			getView:              func() string { return NewMainMenu(config).View() },
-			contentMarker:        "SSH Management",
+			contentMarker:        "Servers",
 			helpMarker:           "Navigate",
 			shouldHaveContextual: false,
 		},

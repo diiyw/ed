@@ -98,40 +98,40 @@ var (
 	borderStyle = lipgloss.NewStyle().
 			BorderStyle(lipgloss.RoundedBorder()).
 			BorderForeground(primaryColor).
-			Padding(1, 2)
+			Padding(0, 1)
 
 	// Thick border variant for emphasis
 	borderStyleThick = lipgloss.NewStyle().
 				BorderStyle(lipgloss.ThickBorder()).
 				BorderForeground(primaryColor).
-				Padding(1, 2)
+				Padding(0, 1)
 
 	// Thin border variant for subtle separation
 	borderStyleThin = lipgloss.NewStyle().
 			BorderStyle(lipgloss.NormalBorder()).
 			BorderForeground(mutedColor).
-			Padding(1, 2)
+			Padding(0, 1)
 
 	// Double border variant for special emphasis
 	borderStyleDouble = lipgloss.NewStyle().
 				BorderStyle(lipgloss.DoubleBorder()).
 				BorderForeground(accentColor).
-				Padding(1, 2)
+				Padding(0, 1)
 
 	// Enhanced form style with rounded border and shadow effect
 	formStyle = lipgloss.NewStyle().
 			BorderStyle(lipgloss.RoundedBorder()).
 			BorderForeground(secondaryColor).
-			Padding(1, 2).
+			Padding(0, 1).
 			Width(80)
 
 	// Card style with shadow effect using box characters
 	cardStyle = lipgloss.NewStyle().
 			BorderStyle(lipgloss.RoundedBorder()).
 			BorderForeground(primaryColor).
-			Padding(1, 2).
-			MarginTop(1).
-			MarginBottom(1)
+			Padding(0, 1).
+			MarginTop(0).
+			MarginBottom(0)
 
 	// Card style with shadow effect (alternative)
 	cardStyleWithShadow = lipgloss.NewStyle().
@@ -139,10 +139,10 @@ var (
 				BorderForeground(primaryColor).
 				BorderBottom(true).
 				BorderRight(true).
-				Padding(1, 2).
-				MarginTop(1).
-				MarginBottom(1).
-				MarginRight(1)
+				Padding(0, 1).
+				MarginTop(0).
+				MarginBottom(0).
+				MarginRight(0)
 
 	// Divider styles with decorative elements
 	dividerStyle = lipgloss.NewStyle().
@@ -197,7 +197,7 @@ func renderIcon(iconType string, style lipgloss.Style) string {
 		"heart":    "♥",
 		"folder":   "📁",
 		"file":     "📄",
-		"server":   "🖥",
+		"server":   "🗄️ ",
 		"key":      "🔑",
 		"lock":     "🔒",
 		"unlock":   "🔓",
@@ -389,7 +389,7 @@ func renderSpinner(frame int) string {
 func renderCard(content string, title string) string {
 	if title != "" {
 		titleBar := subtitleStyle.Render(title)
-		return cardStyle.Render(titleBar + "\n\n" + content)
+		return cardStyle.Render(titleBar + "\n" + content)
 	}
 
 	return cardStyle.Render(content)
@@ -400,7 +400,7 @@ func renderCardWithShadow(content string, title string) string {
 	var cardContent string
 	if title != "" {
 		titleBar := subtitleStyle.Render(title)
-		cardContent = cardStyleWithShadow.Render(titleBar + "\n\n" + content)
+		cardContent = cardStyleWithShadow.Render(titleBar + "\n" + content)
 	} else {
 		cardContent = cardStyleWithShadow.Render(content)
 	}
@@ -520,7 +520,7 @@ type MainMenuModel struct {
 // NewMainMenu creates a new main menu
 func NewMainMenu(config *Config) MainMenuModel {
 	items := []list.Item{
-		mainMenuItem{title: "SSH Management", desc: "Add, edit, delete, and test SSH server configurations"},
+		mainMenuItem{title: "Servers", desc: "Add, edit, delete, and test SSH server configurations"},
 		mainMenuItem{title: "Project Management", desc: "Manage projects and deployments"},
 		mainMenuItem{title: "Exit", desc: "Quit the application"},
 	}
@@ -556,7 +556,7 @@ func (m MainMenuModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if ok {
 				m.choice = i.title
 				switch i.title {
-				case "SSH Management":
+				case "Servers":
 					return NewSSHListModel(m.config), nil
 				case "Project Management":
 					return NewProjectListModel(m.config), nil
@@ -587,18 +587,18 @@ func (m MainMenuModel) View() string {
 	bannerStyle := lipgloss.NewStyle().
 		Foreground(textPrimary).
 		Background(primaryColor).
-		Padding(1, 4).
+		Padding(0, 2).
 		Bold(true).
 		Align(lipgloss.Center).
 		Width(60)
 
 	welcomeBanner := bannerStyle.Render("🚀 EASY DEPLOY 🚀")
-	content.WriteString(welcomeBanner + "\n\n")
+	content.WriteString(welcomeBanner + "\n")
 
 	// Subtitle with decorative divider
 	subtitleText := subtitleStyle.Render("Main Menu")
 	content.WriteString(subtitleText + "\n")
-	content.WriteString(renderDividerDecorative(60, dividerStyleAccent, "stars") + "\n\n")
+	content.WriteString(renderDividerDecorative(60, dividerStyleAccent, "stars") + "\n")
 
 	// Enhanced menu items with icons and improved selection indicators
 	menuItems := []struct {
@@ -606,7 +606,7 @@ func (m MainMenuModel) View() string {
 		desc  string
 		icon  string
 	}{
-		{"SSH Management", "Add, edit, delete, and test SSH server configurations", "server"},
+		{"Servers", "Add, edit, delete, and test SSH server configurations", "server"},
 		{"Project Management", "Manage projects and deployments", "package"},
 		{"Exit", "Quit the application", "cross"},
 	}
@@ -636,9 +636,9 @@ func (m MainMenuModel) View() string {
 				Background(backgroundLight).
 				BorderStyle(lipgloss.RoundedBorder()).
 				BorderForeground(accentColor).
-				Padding(1, 2).
+				Padding(0, 1).
 				Width(56).
-				MarginBottom(1)
+				MarginBottom(0)
 		} else {
 			// Unselected item
 			indicator = "  "
@@ -649,9 +649,9 @@ func (m MainMenuModel) View() string {
 			itemContainer = lipgloss.NewStyle().
 				BorderStyle(lipgloss.RoundedBorder()).
 				BorderForeground(mutedColor).
-				Padding(1, 2).
+				Padding(0, 1).
 				Width(56).
-				MarginBottom(1)
+				MarginBottom(0)
 		}
 
 		// Build menu item content
@@ -664,12 +664,12 @@ func (m MainMenuModel) View() string {
 		if i < len(menuItems)-1 {
 			separatorStyle := lipgloss.NewStyle().Foreground(mutedColor)
 			separator := separatorStyle.Render(strings.Repeat("·", 60))
-			content.WriteString(separator + "\n\n")
+			content.WriteString(separator + "\n")
 		}
 	}
 
 	// Add decorative divider before help text
-	content.WriteString("\n" + renderDividerDecorative(60, dividerStyle, "default") + "\n\n")
+	content.WriteString("\n" + renderDividerDecorative(60, dividerStyle, "default") + "\n")
 
 	// Enhanced help text using renderKeyHelp
 	helpKeys := map[string]string{
@@ -680,10 +680,10 @@ func (m MainMenuModel) View() string {
 	helpText := renderKeyHelp(helpKeys)
 	content.WriteString(helpText)
 
-	return "\n" + borderStyleThick.Render(content.String())
+	return borderStyleThick.Render(content.String())
 }
 
-// SSH Management Types
+// Servers Types
 type sshItem struct {
 	config SSHConfig
 }
@@ -787,7 +787,7 @@ func (m SSHListModel) View() string {
 
 	// Check if list is empty
 	if len(m.list.Items()) == 0 {
-		emptyMessage := subtitleStyle.Render("No SSH Configurations Found") + "\n\n" +
+		emptyMessage := subtitleStyle.Render("No SSH Configurations Found") + "\n" +
 			bodyStyle.Render("You haven't added any SSH server configurations yet.") + "\n" +
 			bodyStyle.Render("Press ") + renderIcon("add", lipgloss.NewStyle().Foreground(accentColor)) +
 			bodyStyle.Render(" 'a' to add your first SSH configuration.")
@@ -799,10 +799,10 @@ func (m SSHListModel) View() string {
 		}
 		helpText := renderKeyHelp(helpKeys)
 
-		return "\n" + borderStyle.Render(
-			titleStyle.Render("SSH Configurations")+"\n\n"+
-				emptyMessage+"\n\n"+
-				renderDivider(60, dividerStyle)+"\n\n"+
+		return borderStyle.Render(
+			titleStyle.Render("SSH Configurations") + "\n" +
+				emptyMessage + "\n" +
+				renderDivider(60, dividerStyle) + "\n" +
 				helpText,
 		)
 	}
@@ -811,7 +811,7 @@ func (m SSHListModel) View() string {
 	var listContent strings.Builder
 
 	// Add title
-	listContent.WriteString(titleStyle.Render("SSH Configurations") + "\n\n")
+	listContent.WriteString(titleStyle.Render("SSH Configurations") + "\n")
 
 	// Render each SSH config as an enhanced card
 	for i, item := range m.list.Items() {
@@ -833,24 +833,24 @@ func (m SSHListModel) View() string {
 					BorderStyle(lipgloss.RoundedBorder()).
 					BorderForeground(accentColor).
 					Background(backgroundLight).
-					Padding(1, 2).
+					Padding(0, 1).
 					MarginTop(0).
-					MarginBottom(1)
+					MarginBottom(0)
 				listContent.WriteString(selectedCardStyle.Render(cardContent) + "\n")
 			} else {
 				normalCardStyle := lipgloss.NewStyle().
 					BorderStyle(lipgloss.RoundedBorder()).
 					BorderForeground(mutedColor).
-					Padding(1, 2).
+					Padding(0, 1).
 					MarginTop(0).
-					MarginBottom(1)
+					MarginBottom(0)
 				listContent.WriteString(normalCardStyle.Render(cardContent) + "\n")
 			}
 		}
 	}
 
 	// Add divider before help text
-	listContent.WriteString("\n" + renderDivider(60, dividerStyle) + "\n\n")
+	listContent.WriteString("\n" + renderDivider(60, dividerStyle) + "\n")
 
 	// Enhanced help text using renderKeyHelp
 	helpKeys := map[string]string{
@@ -864,7 +864,7 @@ func (m SSHListModel) View() string {
 	helpText := renderKeyHelp(helpKeys)
 	listContent.WriteString(helpText)
 
-	return "\n" + borderStyle.Render(listContent.String())
+	return borderStyle.Render(listContent.String())
 }
 
 // SSHFormModel represents the SSH configuration form

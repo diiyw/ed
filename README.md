@@ -3,7 +3,7 @@ A simple TUI-based deployer for personal usage built with Bubbletea.
 
 ## Features
 
-- **SSH Management**: Add, edit, delete, and test SSH server configurations
+- **Servers**: Add, edit, delete, and test SSH server configurations
 - **Project Management**: Create projects with build instructions and deploy scripts
 - **Deployment**: Deploy projects to multiple servers with real-time logging
 
@@ -19,7 +19,7 @@ go build
 
 ## Usage
 
-1. **SSH Management**:
+1. **Servers**:
    - Add SSH configurations for your servers
    - Test connections before deployment
    - Support for password, key, and SSH agent authentication
