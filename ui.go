@@ -395,46 +395,6 @@ func renderCard(content string, title string) string {
 	return cardStyle.Render(content)
 }
 
-// renderCardWithShadow wraps content in a styled card with shadow effect
-func renderCardWithShadow(content string, title string) string {
-	var cardContent string
-	if title != "" {
-		titleBar := subtitleStyle.Render(title)
-		cardContent = cardStyleWithShadow.Render(titleBar + "\n" + content)
-	} else {
-		cardContent = cardStyleWithShadow.Render(content)
-	}
-
-	// Add shadow effect using box drawing characters
-	lines := strings.Split(cardContent, "\n")
-	var result strings.Builder
-	for i, line := range lines {
-		result.WriteString(line)
-		if i < len(lines)-1 {
-			result.WriteString("\n")
-		}
-	}
-
-	// Add bottom shadow line
-	if len(lines) > 0 {
-		// Calculate approximate width of the card
-		maxWidth := 0
-		for _, line := range lines {
-			// Strip ANSI codes for accurate width calculation (simplified)
-			if len(line) > maxWidth {
-				maxWidth = len(line)
-			}
-		}
-		if maxWidth > 2 {
-			shadowLine := " " + strings.Repeat("▀", maxWidth-2)
-			result.WriteString("\n")
-			result.WriteString(lipgloss.NewStyle().Foreground(mutedColor).Render(shadowLine))
-		}
-	}
-
-	return result.String()
-}
-
 // renderKeyHelp formats keyboard shortcuts beautifully
 func renderKeyHelp(keys map[string]string) string {
 	if len(keys) == 0 {
