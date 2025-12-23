@@ -1,0 +1,12 @@
+{
+  "ssh_configs": [
+    {
+      "name": "server2",
+      "host": "host2.com",
+      "port": 22,
+      "user": "user2",
+      "auth_type": "key"
+    }
+  ],
+  "projects": null
+}

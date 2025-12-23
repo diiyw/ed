@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Purple primary color (matching TUI) */
+    --primary: 262 83% 58%; /* #7C3AED - Purple */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    /* Emerald secondary color (matching TUI) */
+    --secondary: 160 84% 39%; /* #10B981 - Emerald */
+    --secondary-foreground: 0 0% 100%; /* White */
+
+    /* Amber accent color (matching TUI) */
+    --accent: 38 92% 50%; /* #F59E0B - Amber */
+    --accent-foreground: 0 0% 0%; /* Black */
+
+    /* Background colors - dark theme */
+    --background: 217 33% 17%; /* #1F2937 - Dark gray */
+    --foreground: 0 0% 98%; /* #FAFAFA - Almost white */
+
+    /* Card colors */
+    --card: 217 33% 22%; /* #374151 - Lighter gray */
+    --card-foreground: 0 0% 98%; /* #FAFAFA */
+
+    /* Popover colors */
+    --popover: 217 33% 22%; /* #374151 */
+    --popover-foreground: 0 0% 98%; /* #FAFAFA */
+
+    /* Muted colors */
+    --muted: 215 20% 65%; /* #9CA3AF - Gray */
+    --muted-foreground: 215 16% 47%; /* #6B7280 - Darker gray */
+
+    /* Border and input */
+    --border: 217 33% 30%; /* Slightly lighter than card */
+    --input: 217 33% 30%; /* Same as border */
+    --ring: 262 83% 58%; /* Purple - same as primary */
+
+    /* Destructive (error) */
+    --destructive: 0 84% 60%; /* #EF4444 - Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    /* Border radius */
+    --radius: 0.5rem;
+  }
+
+  /* Light mode (optional - keeping dark as default) */
+  .light {
+    --primary: 262 83% 58%; /* Purple */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 84% 39%; /* Emerald */
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 38 92% 50%; /* Amber */
+    --accent-foreground: 0 0% 0%;
+
+    --background: 0 0% 100%; /* White */
+    --foreground: 222 47% 11%; /* Dark text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 262 83% 58%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  p {
+    line-height: 1.75;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted));
+    border-radius: 0.375rem;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground));
+  }
+}
+
+@layer utilities {
+  /* Custom utility classes */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Responsive container utilities */
+  .container-tight {
+    max-width: 56rem;
+  }
+
+  .container-wide {
+    max-width: 80rem;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "ssh_configs": [
+    {
+      "name": "integration-test",
+      "host": "example.com",
+      "port": 22,
+      "user": "testuser",
+      "auth_type": "",
+      "password": "testpass"
+    }
+  ],
+  "projects": [
+    {
+      "name": "integration-project",
+      "build_instructions": "",
+      "deploy_script": "",
+      "deploy_servers": null,
+      "created_at": "2025-12-24T00:43:38.8157799+08:00",
+      "updated_at": "2025-12-24T00:43:38.8157799+08:00"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"encoding/json"
@@ -75,27 +75,4 @@ func (sc *SSHConfig) GetAuthMethod() (ssh.Auth, error) {
 	default:
 		return nil, nil
 	}
-}
-
-// APIResponse represents a standard API response
-type APIResponse struct {
-	Data    interface{} `json:"data,omitempty"`
-	Message string      `json:"message,omitempty"`
-	Error   string      `json:"error,omitempty"`
-}
-
-// DeploymentLog represents a log entry from deployment
-type DeploymentLog struct {
-	Type      string    `json:"type"`
-	Data      string    `json:"data"`
-	Timestamp time.Time `json:"timestamp"`
-}
-
-// DeploymentStatus represents the status of a deployment
-type DeploymentStatus struct {
-	ID          string     `json:"id"`
-	ProjectName string     `json:"projectName"`
-	Status      string     `json:"status"`
-	StartedAt   time.Time  `json:"startedAt"`
-	CompletedAt *time.Time `json:"completedAt,omitempty"`
 }

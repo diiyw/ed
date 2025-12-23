@@ -1,0 +1,56 @@
+/* Application-specific styles */
+
+/* Smooth transitions for interactive elements */
+@layer components {
+  .transition-smooth {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-smooth hover:shadow-lg hover:scale-[1.02];
+  }
+
+  /* Button focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  /* Status badge styles */
+  .badge-success {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  .badge-error {
+    @apply bg-destructive text-destructive-foreground;
+  }
+
+  .badge-warning {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .badge-info {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+/* Responsive utilities */
+@layer utilities {
+  /* Grid layouts for cards */
+  .grid-cards {
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .grid-cards-wide {
+    @apply grid grid-cols-1 gap-6 md:grid-cols-2;
+  }
+
+  /* Flex utilities */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+}
